@@ -12,7 +12,7 @@ end
 class ChildrenParents < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
-      belongs_to :parameter
+      belongs_to :parameter, foreign_key: :children_parameter_id
       belongs_to :category, foreign_key: :parent_category_id
 
       belongs_to :category, foreign_key: :children_category_id
@@ -24,8 +24,8 @@ class Parameters < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
       has_many :children_parents
-      has_many :categories, as: :parent_categories, through: :children_parents
-      has_many :categories, through: :children_parents
+      has_many :categories, as: :parent_categories, through: :children_parents, foreign_key: :children_parameter_id
+      has_many :categories, through: :children_parents, foreign_key: :children_parameter_id
     end
   end
 end
