@@ -11,26 +11,26 @@ category_repo = CategoryRepo.new(CONTAINER)
 
 category = category_repo.changeset(title: 'Hello World')
 
-tags = category_repo
-         .changeset(:tags, [{ name: 'red' }, { name: 'green' }])
+parameters = category_repo
+         .changeset(:parameters, [{ name: 'red' }, { name: 'green' }])
          .with(command_type: :fetch_or_create)
 
-# return tags associated with the category
+# return parameters associated with the category
 category_repo.transaction do
-  puts "\ncategory.associate(tags, :categories).commit.inspect"
-  puts category.associate(tags, :parent_categories).commit.inspect
+  puts "\ncategory.associate(parameters, :categories).commit.inspect"
+  puts category.associate(parameters, :parent_categories).commit.inspect
 end
 
-# return category associated with the tags
+# return category associated with the parameters
 category_repo.transaction do
-  puts "\ntags.associate(category, :tags).commit.inspect"
-  puts tags.associate(category, :tags).commit.inspect
+  puts "\nparameters.associate(category, :parameters).commit.inspect"
+  puts parameters.associate(category, :parameters).commit.inspect
 end
 
 # commit separately and return what you need
 category_repo.transaction do
-  new_tags = tags.commit
-  new_category = category.associate(new_tags, :tags).commit
+  new_parameters = parameters.commit
+  new_category = category.associate(new_parameters, :parameters).commit
 
   puts new_category.inspect
 end

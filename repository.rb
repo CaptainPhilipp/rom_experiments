@@ -1,5 +1,5 @@
 class CategoryRepo < ROM::Repository[:categories]
-  relations :tags
+  relations :parameters
 
   commands :create
 end

@@ -1,8 +1,8 @@
-class CreateTags < ROM::SQL::Commands::Postgres::Upsert
-  relation :tags
+class CreateParameters < ROM::SQL::Commands::Postgres::Upsert
+  relation :parameters
   register_as :fetch_or_create
   result :many
-  constraint 'tags_name_key'
+  constraint 'parameters_name_key'
 
   def execute(tuples, *)
     result = super
