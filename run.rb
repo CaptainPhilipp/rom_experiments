@@ -17,14 +17,12 @@ parameters = category_repo
 
 # return parameters associated with the category
 category_repo.transaction do
-  puts "\ncategory.associate(parameters, :categories).commit.inspect"
-  puts category.associate(parameters, :parent_categories).commit.inspect
+  puts "\n" + category.associate(parameters, :parent_categories).commit.inspect
 end
 
 # return category associated with the parameters
 category_repo.transaction do
-  puts "\nparameters.associate(category, :parameters).commit.inspect"
-  puts parameters.associate(category, :parameters).commit.inspect
+  puts "\n" + parameters.associate(category, :children_parameters).commit.inspect
 end
 
 # commit separately and return what you need
@@ -32,7 +30,7 @@ category_repo.transaction do
   new_parameters = parameters.commit
   new_category = category.associate(new_parameters, :parameters).commit
 
-  puts new_category.inspect
+  puts "\n" + new_category.inspect
 end
 
 category_repo

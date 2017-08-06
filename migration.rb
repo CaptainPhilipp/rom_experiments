@@ -12,8 +12,8 @@ migration = ROM_CONFIG.gateways[:default].migration do
 
     create_table?(:children_parents) do
       primary_key :id
-      foreign_key :children_parameter_id, :parameters
       foreign_key :parent_category_id, :categories
+      foreign_key :children_parameter_id, :parameters
 
       foreign_key :children_category_id, :categories
     end
