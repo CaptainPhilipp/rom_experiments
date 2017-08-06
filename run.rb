@@ -12,7 +12,7 @@ category_repo = CategoryRepo.new(CONTAINER)
 category = category_repo.changeset(title: 'Hello World')
 
 parameters = category_repo
-         .changeset(:parameters, [{ name: 'red' }, { name: 'green' }])
+         .changeset(:parameters, [{ title: 'red' }, { title: 'green' }])
          .with(command_type: :fetch_or_create)
 
 # return parameters associated with the category

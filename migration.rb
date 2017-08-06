@@ -7,7 +7,7 @@ migration = ROM_CONFIG.gateways[:default].migration do
 
     create_table?(:parameters) do
       primary_key :id
-      column :name, String, null: false, unique: true
+      column :title, String, null: false, unique: true
     end
 
     create_table?(:children_parents) do
