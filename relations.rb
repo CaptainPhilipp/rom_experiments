@@ -1,7 +1,6 @@
 class Categories < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
-      has_many :children_parents
       has_many :parameters, through: :children_parents, foreign_key: :parent_category_id
 
       has_many :categories, as: :parent_categories, through: :children_parents, foreign_key: :children_category_id
@@ -23,7 +22,6 @@ end
 class Parameters < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
-      has_many :children_parents
       has_many :categories, as: :parent_categories, through: :children_parents, foreign_key: :children_parameter_id
       has_many :categories, through: :children_parents, foreign_key: :children_parameter_id
     end
