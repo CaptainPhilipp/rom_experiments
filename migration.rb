@@ -10,7 +10,7 @@ migration = ROM_CONFIG.gateways[:default].migration do
       column :name, String, null: false, unique: true
     end
 
-    create_table?(:taggings) do
+    create_table?(:children_parents) do
       primary_key :id
       foreign_key :tag_id, :tags
       foreign_key :parent_category_id, :categories
